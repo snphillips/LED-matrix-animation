@@ -1,4 +1,4 @@
-# Fire LED Matrix Project
+# LED Matrix Animation - Faux Fireplace
 
 ## Folder structure
 ```
