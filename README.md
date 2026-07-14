@@ -1,5 +1,7 @@
 # LED Matrix Animation - Faux Fireplace
 
+This repo contains scripts to process a video into a gif, for upload to the Adafruit MatrixPortal S3 (https://www.adafruit.com/product/5778), which attaches to the 32x32 RGB LED Matrix Panel - 6mm pitch (https://www.adafruit.com/product/1484).
+
 ## Folder structure
 ```
 fire_led_project/
