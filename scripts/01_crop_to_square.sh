@@ -4,8 +4,9 @@
 
 set -e
 
-INPUT="fire_input.mp4"
-OUTPUT="fire_01_square.mp4"
+
+INPUT="source/fire_input.mp4"
+OUTPUT="working/fire_01_square.mp4"
 
 echo "=== Step 1: Crop to square ==="
 echo "Script running from: $(pwd)"

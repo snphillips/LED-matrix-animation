@@ -53,7 +53,7 @@ next_delay = odg.next_frame()
 # Brightness control: 1.0 = full brightness, 0.0 = fully black.
 # Adjust this value to taste for your fireplace install.
 # -------------------------------------------------------------
-BRIGHTNESS = 0.4
+BRIGHTNESS = 1.0
 
 # -------------------------------------------------------------
 # Build a solid black bitmap the same size as the gif frames.

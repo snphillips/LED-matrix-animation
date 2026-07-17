@@ -16,9 +16,9 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR/.."
 
-INPUT="working/fire_02_32x32.mp4"
-PALETTE="working/palette.png"
-OUTPUT="output/fire_animation.gif"
+INPUT="working-video/fire_02_32x32.mp4"
+PALETTE="working-video/palette.png"
+OUTPUT="output-gif/fire_animation.gif"
 
 # Frames per second for the final GIF. 12 is a good balance of smoothness vs. file size
 # for a 32x32 matrix -- see notes below if you want to try 15.
