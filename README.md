@@ -6,14 +6,14 @@ This repo contains scripts to process a video into a gif, for upload to the Adaf
 ```
 fire_led_project/
 ├── scripts/    ← the ffmpeg scripts, run in order
-├── source/     ← put your original fire_input.mp4 here
-├── working/    ← intermediate files land here automatically
-└── output/     ← final fire_animation.gif lands here
+├── source-video/     ← put your original fire_input.mp4 here
+├── working-video/    ← intermediate files land here automatically
+└── output-gif/     ← final fire_animation.gif lands here
 ```
 
 ## Workflow: creating the GIF
 
-1. Place your source video at `source/fire_input.mp4`
+1. Place your source video at `source-video/fire_input.mp4`
 2. From the `fire_led_project/` root folder, run each script in order:
 
 ```bash
@@ -23,7 +23,7 @@ chmod +x scripts/*.sh
 ./scripts/03_convert_to_gif.sh
 ```
 
-3. Your final GIF will be at `output/fire_animation.gif`, ready to load onto
+3. Your final GIF will be at `output-gif/fire_animation.gif`, ready to load onto
    the MatrixPortal S3 (see below).
 
 ### Notes
@@ -33,7 +33,7 @@ chmod +x scripts/*.sh
   `FPS=15`, but check the resulting file size isn't ballooning too much.
 - The GIF is set to loop infinitely (`-loop 0`).
 - `working/` files are intermediate and safe to delete once you're happy with
-  the final GIF in `output/`.
+  the final GIF in `output-gif/`.
 
 ---
 
@@ -76,7 +76,7 @@ firmware and tooling change over time):
 ### Step 2 — Create the gifs folder and load your GIF
 
 1. On the `CIRCUITPY` drive, create a folder named exactly `gifs`.
-2. Copy `output/fire_animation.gif` into that `gifs` folder.
+2. Copy `output-gif/fire_animation.gif` into that `gifs` folder.
 3. Do this step **before** flashing the GIF player firmware (Step 3) —
    copying GIFs while the GIF player is already running can occasionally
    corrupt or clear the drive.
