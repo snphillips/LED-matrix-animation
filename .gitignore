@@ -2,6 +2,9 @@
 source-video/*
 working-video/*
 output-gif/*
+backup-videos/*
+backup-gifs/*
+palettes/*
 
 # But keep the folders themselves tracked in git (empty dirs aren't tracked by default)
 !source-video/.gitkeep
