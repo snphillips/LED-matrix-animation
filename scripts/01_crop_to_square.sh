@@ -13,13 +13,12 @@
 
 set -e
 
-
-INPUT="source-video/fire_input.mp4"
-OUTPUT="working-video/fire_01_square.mp4"
+SOURCE_DIR="source-video"
+OUTPUT="working-video/01_square.mp4"
 
 echo "=== Step 1: Crop to square ==="
 echo "Script running from: $(pwd)"
-echo "Looking for input file: $INPUT"
+echo "Looking for an .mp4 in: $SOURCE_DIR"
 
 # Check ffmpeg is installed
 if ! command -v ffmpeg &> /dev/null; then
@@ -29,13 +28,24 @@ if ! command -v ffmpeg &> /dev/null; then
 fi
 echo "ffmpeg found: $(command -v ffmpeg)"
 
-# Check input file exists
-if [ ! -f "$INPUT" ]; then
-  echo "ERROR: Input file '$INPUT' not found in $(pwd)."
+# Find the input mp4 in SOURCE_DIR. Since we're only processing one file at a
+# time, pick whatever single .mp4 is in there rather than requiring an exact
+# filename.
+mp4_files=("$SOURCE_DIR"/*.mp4)
+
+if [ ! -e "${mp4_files[0]}" ]; then
+  echo "ERROR: No .mp4 files found in $SOURCE_DIR."
   echo "Files in this folder:"
-  ls -la
+  ls -la "$SOURCE_DIR" 2>/dev/null || echo "  (directory does not exist)"
   exit 1
 fi
+
+if [ "${#mp4_files[@]}" -gt 1 ]; then
+  echo "WARNING: Multiple .mp4 files found in $SOURCE_DIR, using the first one:"
+  printf '  %s\n' "${mp4_files[@]}"
+fi
+
+INPUT="${mp4_files[0]}"
 echo "Input file found: $INPUT ($(du -h "$INPUT" | cut -f1))"
 
 # Report source orientation/dimensions for visibility (best-effort; doesn't fail the script)

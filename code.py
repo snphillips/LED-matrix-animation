@@ -1,6 +1,6 @@
 # =============================================================
 # Fire animation player for MatrixPortal S3 + 32x32 RGB LED matrix
-# Plays /gifs/fire_animation.gif on loop, dimmed to a chosen brightness
+# Plays /gifs/animation.gif on loop, dimmed to a chosen brightness
 # =============================================================
 
 import time
@@ -46,14 +46,14 @@ display = framebufferio.FramebufferDisplay(matrix, auto_refresh=False)
 # next_frame() must be called once up front to actually decode
 # and load the first frame into odg.bitmap before we use it.
 # -------------------------------------------------------------
-odg = gifio.OnDiskGif("/gifs/fire_animation.gif")
+odg = gifio.OnDiskGif("/gifs/animation.gif")
 next_delay = odg.next_frame()
 
 # -------------------------------------------------------------
 # Brightness control: 1.0 = full brightness, 0.0 = fully black.
 # Adjust this value to taste for your fireplace install.
 # -------------------------------------------------------------
-BRIGHTNESS = 1.0
+BRIGHTNESS = 0.8
 
 # -------------------------------------------------------------
 # Build a solid black bitmap the same size as the gif frames.
