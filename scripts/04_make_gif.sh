@@ -1,5 +1,5 @@
 #!/bin/bash
-# Step 4: Convert the color-graded 32x32 video into a high-quality,
+# Step 4: Convert the color-graded 32x32 video into a
 # seamlessly-looping animated GIF.
 #
 # This is a two-pass process:
@@ -9,7 +9,7 @@
 #   Pass 2: encode the GIF using that palette
 #
 # This script assumes 03_color_grade.sh has already been run and expects
-# a pre-graded input video -- no color filters are applied here, so the
+# a pre-graded input video. No color filters are applied here, so the
 # palette and the final GIF colors are guaranteed to match what you saw
 # after grading.
 #
@@ -27,10 +27,10 @@ PALETTE="working-video/palette.png"
 OUTPUT="working-video/04_gif.gif"
 
 # Frames per second for the final GIF. 12 is a good balance of smoothness vs. file size
-# for a 32x32 matrix -- see notes below if you want to try 15.
+# for a 32x32 matrix. You could try 15 though you'd get a bigger file size.
 FPS=12
 
-echo "=== Step 3b: Convert graded video to GIF ==="
+echo "=== Step 3: Convert graded video to GIF ==="
 echo "Project root: $(pwd)"
 echo "Looking for input file: $INPUT"
 

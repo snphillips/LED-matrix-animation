@@ -3,8 +3,8 @@
 
 set -e
 
-INPUT="working-video/fire_01_square.mp4"
-OUTPUT="working-video/fire_02_32x32.mp4"
+INPUT="working-video/01_square.mp4"
+OUTPUT="working-video/02_32x32.mp4"
 
 echo "=== Step 2: Resize to 32x32 ==="
 echo "Script running from: $(pwd)"
