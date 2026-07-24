@@ -162,33 +162,37 @@ At a high level, `code.py`:
 
 ## Power wiring
 
-The matrix panel and the MatrixPortal S3 are powered **separately**, from a
-single 5V/4A wall supply split into two legs, rather than routing the
-panel's power through the MatrixPortal's screw terminals. This avoids
-current-limiting/brownout issues under load and keeps the two devices
-electrically independent while still sharing one wall outlet.
+Everything runs from a **single USB-C power source** (a 60W-max USB-C
+supply), plugged into the MatrixPortal S3's USB-C port. The board's screw
+terminals — which are internally tied to that same USB-C rail — are then
+used to distribute 5V/GND out to the two other components:
 
 ```
-5V/4A wall supply
+USB-C power supply (max 60W)
         │
         ▼
-  2.1mm DC Y-splitter (1 female-in, 2 male-out, 6A rated)
-    │                              │
-    ▼                              ▼
-Female DC terminal block    2.1mm barrel-to-USB-C
-adapter → bare wires →      adapter → USB-C port on
-matrix panel's power        MatrixPortal S3
-input
+  MatrixPortal S3 (USB-C port)
+        │
+        ▼
+  Screw terminals (+5V / GND)
+    │                        │
+    ▼                        ▼
+LED matrix panel        MAX98357A audio amp
+power input              (I2S audio out)
 ```
 
-**Do not** connect the matrix panel's power to the MatrixPortal's screw
-terminals — those terminals are wired directly to the USB-C rail, not a
-separate input, and back-feeding them can cause brownouts or damage if a
-USB cable is plugged in at the same time.
-
-**Reminder:** only ever have one power source feeding the MatrixPortal's
-USB-C port at a time. Unplug the wall supply's USB-C leg before connecting
-a computer via USB to reprogram the board.
+- The matrix panel and the MAX98357A amp both draw their power from the
+  MatrixPortal's screw terminals, in parallel.
+- There is no separate wall supply and no DC splitter — one USB-C cable
+  powers the whole build.
+- Since the panel's power now comes through the board rather than a
+  dedicated line, keep an eye on brightness/current draw: if you ever see
+  flickering, dimming, or resets under bright frames, it's a sign the
+  combined draw is approaching the supply's limit, and lowering
+  `BRIGHTNESS` in `code.py` is the easiest fix.
+- Because power comes in only through USB-C now, reprogramming the board is
+  simple — just plug in the same (or another) USB-C cable from your
+  computer; there's no second power path to disconnect first.
 
 ---
 
@@ -209,8 +213,8 @@ a computer via USB to reprogram the board.
   factor passed positionally rather than as `factor1=`, and both bitmaps
   passed in must share the same bits-per-pixel format. Already handled in
   `code.py`.
-- **Only reds/oranges show, no white/blue** — if this happens with the wall
-  supply connected, check that the matrix panel's power leads are actually
-  wired to the splitter/terminal block and not left disconnected — red LEDs
-  have a lower forward voltage than blue/green, so a panel receiving only
-  parasitic power through its data lines will often show dim reds only.
+- **Only reds/oranges show, no white/blue** — check that the matrix panel's
+  power leads are actually connected to the screw terminals and not left
+  disconnected — red LEDs have a lower forward voltage than blue/green, so
+  a panel receiving only parasitic power through its data lines (with no
+  real connection to the +5V/GND terminals) will often show dim reds only.
