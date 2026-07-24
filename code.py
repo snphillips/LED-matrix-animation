@@ -10,6 +10,10 @@ import framebufferio
 import rgbmatrix
 import gifio
 import bitmaptools
+import audiocore
+import audiobusio
+import audiomixer
+import os
 
 # -------------------------------------------------------------
 # Release any previously-configured displays (needed so the code
@@ -84,6 +88,49 @@ face = displayio.TileGrid(
 )
 group.append(face)
 display.root_group = group
+
+# -------------------------------------------------------------
+# Audio setup: loops whatever WAV file is in /sound/ continuously in the
+# background over I2S, at a fixed ambient volume. No on/off logic
+# starts as soon as the board powers on and never stops.
+# -------------------------------------------------------------
+
+# Ambient playback volume. 0.0 = silent, 1.0 = full volume.
+# Tweak this to taste
+# buried in the setup code below.
+FIRE_VOLUME = 0.7
+
+audio = audiobusio.I2SOut(bit_clock=board.A2, word_select=board.A3, data=board.A1)
+
+# NOTE: sample_rate and channel_count here must match your actual
+# WAV file's properties. Check your file (e.g. via `afinfo` on Mac,
+# or your audio editor's export settings) and adjust these two
+# values to match -- mismatches will play back at the wrong speed
+# or pitch.
+mixer = audiomixer.Mixer(
+    voice_count=1,
+    sample_rate=22050,
+    channel_count=1,
+    bits_per_sample=16,
+    samples_signed=True,
+    buffer_size=2048,
+)
+audio.play(mixer)
+
+# Find whatever sound file is in /sound/ (instead of hardcoding a filename)
+sound_dir = "/sound"
+sound_files = [
+    f for f in os.listdir(sound_dir)
+    if f.lower().endswith(".wav") and not f.startswith(".")
+]
+
+if not sound_files:
+    raise RuntimeError("No .wav file found in /sound/")
+
+fire_sound_path = sound_dir + "/" + sound_files[0]
+fire_sound = audiocore.WaveFile(fire_sound_path)
+mixer.voice[0].level = FIRE_VOLUME
+mixer.voice[0].play(fire_sound, loop=True)
 
 
 # -------------------------------------------------------------
