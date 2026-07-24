@@ -1,15 +1,12 @@
 # LED Matrix Animation - Faux Fireplace
 
-This repo contains everything needed to build a fire animation with ambient
-crackle audio, running on an [Adafruit MatrixPortal S3](https://www.adafruit.com/product/5778)
-driving a [32x32 RGB LED Matrix Panel - 6mm pitch](https://www.adafruit.com/product/1484),
-mounted inside a faux fireplace.
+I built an LED animation of fire with accompanying sound for my faux fireplace. This repo contains code and instructions on how to build an animation gif and audio .wav, running on an [Adafruit MatrixPortal S3](https://www.adafruit.com/product/5778)
+driving a [32x32 RGB LED Matrix Panel - 6mm pitch](https://www.adafruit.com/product/1484). Sound provided by a [Mono Enclosed Speaker - 3W 4 Ohm](https://www.adafruit.com/product/3351), amplified by an [Adafruit I2S 3W Class D Amplifier Breakout - MAX98357A](https://www.adafruit.com/product/3006)
 
 The project has three parts:
-1. **Video → GIF** processing scripts (fire animation)
-2. **Audio processing** scripts (looping ambient crackle sound)
-3. **`code.py`** — the CircuitPython script that runs on the board, playing
-   the GIF and audio together, driven by a dedicated 4A power supply
+1. **Video → GIF** processing scripts (animation)
+2. **Audio processing** scripts (looping sound)
+3. **`code.py`** — the CircuitPython script that runs on the board, playing the GIF and audio together.
 
 ## Folder structure
 ```
@@ -21,7 +18,7 @@ led_project/
 ├── output-gif/              ← final animation.gif lands here
 └── sound/
     ├── process_wav.sh       ← trims/converts a source audio file for playback
-    └── *.wav / *.mp3        ← put your source ambient fire sound file(s) here
+    └── *.wav / *.mp3        ← put your sound file(s) here
 ```
 
 ---
