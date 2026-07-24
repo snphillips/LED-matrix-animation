@@ -1,15 +1,19 @@
-# Large media files — don't commit these, they're generated/downloaded, not source
+# Large media files — don't commit these,
+# they're generated/downloaded, not source
 source-video/*
 working-video/*
 output-gif/*
 backup-videos/*
 backup-gifs/*
 palettes/*
+sound/*
 
-# But keep the folders themselves tracked in git (empty dirs aren't tracked by default)
+# But keep the folders themselves tracked in git 
+# (empty dirs aren't tracked by default)
 !source-video/.gitkeep
 !working-video/.gitkeep
 !output-gif/.gitkeep
+!sound/.gitkeep
 
 # Common junk
 .DS_Store
