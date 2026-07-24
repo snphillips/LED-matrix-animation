@@ -98,7 +98,7 @@ display.root_group = group
 # Ambient playback volume. 0.0 = silent, 1.0 = full volume.
 # Tweak this to taste
 # buried in the setup code below.
-FIRE_VOLUME = 0.7
+FIRE_VOLUME = 0.5
 
 audio = audiobusio.I2SOut(bit_clock=board.A2, word_select=board.A3, data=board.A1)
 
