@@ -1,12 +1,12 @@
 # LED Matrix Animation - Faux Fireplace
 
-I built an LED animation of fire with accompanying sound for my faux fireplace. This repo contains code and instructions on how to build an animation gif and audio .wav, running on an [Adafruit MatrixPortal S3](https://www.adafruit.com/product/5778)
-driving a [32x32 RGB LED Matrix Panel - 6mm pitch](https://www.adafruit.com/product/1484). Sound provided by a [Mono Enclosed Speaker - 3W 4 Ohm](https://www.adafruit.com/product/3351), amplified by an [Adafruit I2S 3W Class D Amplifier Breakout - MAX98357A](https://www.adafruit.com/product/3006)
+I built an LED animation of fire with accompanying sound to enhance the faux fireplace in my living room. This repo contains code and instructions on how to build your own animation gif and audio .wav, running on an [Adafruit MatrixPortal S3](https://www.adafruit.com/product/5778) driving a [32x32 RGB LED Matrix Panel - 6mm pitch](https://www.adafruit.com/product/1484). Sound provided by a [Mono Enclosed Speaker - 3W 4 Ohm](https://www.adafruit.com/product/3351), amplified by an [Adafruit I2S 3W Class D Amplifier Breakout - MAX98357A](https://www.adafruit.com/product/3006). I power my unit with a usb-c charging cable that I spliced an on/off rocker into.
 
 The project has three parts:
 1. **Video → GIF** processing scripts (animation)
 2. **Audio processing** scripts (looping sound)
-3. **`code.py`** — the CircuitPython script that runs on the board, playing the GIF and audio together.
+3. **`code.py`** the CircuitPython script that runs on the board, playing the GIF and audio together.
+4. **Hardware** Connecting and in some cases soldering all the parts together.
 
 ## Folder structure
 ```
@@ -25,18 +25,32 @@ led_project/
 
 ## Workflow: creating the GIF
 
+You must have ffmpeg installed
 1. Place your source video at `source-video/input.mp4`
-2. From the `led_project/` root folder, run each script in order:
+2. If you're running the scripts for the first time, make the scripts executable:
 
 ```bash
 chmod +x scripts/*.sh
+```
+3. From the `led_project/` root folder, run each script in order, one at a time:
+```
 ./scripts/01_crop_to_square.sh
+```
+```
 ./scripts/02_resize_32x32.sh
+```
+```
 ./scripts/03_color_grade.sh
-./scripts/04_convert_to_gif.sh
+```
+```
+./scripts/04_make_gif.sh
+```
+The `turn_gif_upsidedown` script is optional. Run it if you need your gif to be upside down on:
+```
+./scripts/05_turn_gif_upsidedown.sh
 ```
 
-3. Your final GIF will be at `output-gif/animation.gif`, ready to copy onto
+4. Your final GIF will be at `output-gif/animation.gif`, ready to copy onto
    the MatrixPortal S3 (see below).
 
 ### Notes
@@ -59,9 +73,11 @@ animation, over I2S audio out from the MatrixPortal S3.
    `process_wav.sh`.
 2. Run the script from inside `sound/`:
 
-```bash
+```
 cd sound
 chmod +x process_wav.sh
+```
+```
 ./process_wav.sh
 ```
 

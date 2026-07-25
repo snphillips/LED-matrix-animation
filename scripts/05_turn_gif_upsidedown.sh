@@ -1,21 +1,16 @@
-#!/usr/bin/env bash
-#
-# flip_gifs.sh
-#
-# Lives in scripts/, a sibling of working-video/ and output-gif/. Takes
-# working-video/animation.gif, flips it upside down with ffmpeg, and
-# saves the result into output-gif/ (original input is left untouched).
+# Takes working-video/animation.gif, flips it upside down with ffmpeg, and
+# saves the result into output-gif/ (the original input is left untouched).
 #
 # Expected layout (paths relative to this script's location):
 #   scripts/
-#     flip_gifs.sh          <- this script
+#     05_turn_gif_upsidedown.sh          <- this script
 #   working-video/
 #     animation.gif    <- input
 #   output-gif/
 #     animation_flipped.gif  <- output (written by this script)
 #
 # Usage:
-#   ./flip_gifs.sh
+#   ./05_turn_gif_upsidedown.sh
 #
 # Requirements:
 #   ffmpeg must be installed and on your PATH.
