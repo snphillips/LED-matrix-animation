@@ -98,7 +98,7 @@ display.root_group = group
 # Ambient playback volume. 0.0 = silent, 1.0 = full volume.
 # Tweak this to taste
 # buried in the setup code below.
-FIRE_VOLUME = 0.5
+VOLUME = 0.5
 
 audio = audiobusio.I2SOut(bit_clock=board.A2, word_select=board.A3, data=board.A1)
 
@@ -129,7 +129,7 @@ if not sound_files:
 
 fire_sound_path = sound_dir + "/" + sound_files[0]
 fire_sound = audiocore.WaveFile(fire_sound_path)
-mixer.voice[0].level = FIRE_VOLUME
+mixer.voice[0].level = VOLUME
 mixer.voice[0].play(fire_sound, loop=True)
 
 

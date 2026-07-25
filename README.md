@@ -1,6 +1,11 @@
 # LED Matrix Animation - Faux Fireplace
 
-I built an LED animation of fire with accompanying sound to enhance the faux fireplace in my living room. This repo contains code and instructions on how to build your own animation gif and audio .wav, running on an [Adafruit MatrixPortal S3](https://www.adafruit.com/product/5778) driving a [32x32 RGB LED Matrix Panel - 6mm pitch](https://www.adafruit.com/product/1484). Sound provided by a [Mono Enclosed Speaker - 3W 4 Ohm](https://www.adafruit.com/product/3351), amplified by an [Adafruit I2S 3W Class D Amplifier Breakout - MAX98357A](https://www.adafruit.com/product/3006). I power my unit with a usb-c charging cable that I spliced an on/off rocker into.
+I built an LED animation of fire with accompanying sound to enhance the faux fireplace in my living room. This repo contains code and instructions on how to build your own animation gif and audio .wav, running on an: 
+- [Adafruit MatrixPortal S3](https://www.adafruit.com/product/5778)
+- driving a [32x32 RGB LED Matrix Panel - 6mm pitch](https://www.adafruit.com/product/1484),
+- Sound provided by a [Mono Enclosed Speaker - 3W 4 Ohm](https://www.adafruit.com/product/3351), 
+- amplified by an [Adafruit I2S 3W Class D Amplifier Breakout - MAX98357A](https://www.adafruit.com/product/3006).
+- I power my unit with a usb-c charging cable that I spliced an on/off rocker into.
 
 The project has three parts:
 1. **Video → GIF** processing scripts (animation)
@@ -66,24 +71,8 @@ The `turn_gif_upsidedown` script is optional. Run it if you need your gif to be 
 
 ## Workflow: creating the ambient audio
 
-The fire crackle sound loops continuously in the background alongside the
+The sound loops continuously in the background alongside the
 animation, over I2S audio out from the MatrixPortal S3.
-
-1. Place your source `.wav` or `.mp3` file in the `sound/` folder, alongside
-   `process_wav.sh`.
-2. Run the script from inside `sound/`:
-
-```
-cd sound
-chmod +x process_wav.sh
-```
-```
-./process_wav.sh
-```
-
-3. This produces `<original_name>_processed.wav` in the same folder — leave
-   your original source file untouched, and copy the `_processed.wav` file
-   onto the board (see below).
 
 ### What the script does
 - Trims the first 2 seconds off the source (avoids clicks/pops or fade-ins
@@ -105,6 +94,23 @@ chmod +x process_wav.sh
 - `code.py` automatically finds and plays whatever single `_processed.wav`
   (or any `.wav`) file exists in the board's `/sound/` folder — the filename
   itself doesn't need to be hardcoded anywhere.
+
+1. Place your source `.wav` or `.mp3` file in the `sound/` folder, alongside
+   `process_wav.sh`.
+2. If you're running the script for the first time, make the script executable:
+
+```
+cd sound
+chmod +x process_wav.sh
+```
+2. Run the script from inside `sound/`:
+```
+./process_wav.sh
+```
+
+3. This produces `<original_name>_processed.wav` in the same folder — leave
+   your original source file untouched, and copy the `_processed.wav` file
+   onto the board (see below).
 
 ---
 
