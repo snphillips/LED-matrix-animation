@@ -150,7 +150,6 @@ The `turn_gif_upsidedown` script is optional. Run it if you need your gif to be 
 - The GIF is set to loop infinitely (`-loop 0`).
 - `working-video/` files are intermediate and safe to delete once you're happy
   with the final GIF in `output-gif/`.
-
 ---
 
 ## Create the ambient audio
@@ -198,6 +197,7 @@ chmod +x process_wav.sh
 
 ---
 
+
 ## Preparing the MatrixPortal S3 and loading everything
 
 This project runs on **CircuitPython**.  `code.py` handles both the GIF animation and looping audio.
@@ -240,6 +240,7 @@ animation and audio.
 
 ---
 
+
 ## `code.py` overview
 
 At a high level, `code.py`:
@@ -258,11 +259,8 @@ At a high level, `code.py`:
   noticeably dimmer, warmer look than full brightness.
 - **`FIRE_VOLUME`** (near the audio setup) — adjust ambient crackle loudness
   independent of brightness.
-
 ---
 
-
----
 
 ## Troubleshooting notes
 
