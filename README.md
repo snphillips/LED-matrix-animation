@@ -8,7 +8,9 @@ I built an LED animation of fire with accompanying sound to enhance the faux fir
 - Sound provided by a [Mono Enclosed Speaker - 3W 4 Ohm](https://www.adafruit.com/product/3351), 
 - amplified by an [Adafruit I2S 3W Class D Amplifier Breakout - MAX98357A](https://www.adafruit.com/product/3006).
 - I power my unit with a usb-c charging cable that I spliced an on/off rocker into.
+
 <br clear="left"/>
+<br/>
 
 The project has the following parts:
 - **Hardware** Connecting and in some cases soldering all the parts together.
