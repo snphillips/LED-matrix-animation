@@ -22,9 +22,9 @@ The project has the following parts:
 ---
 
 ## Assembling the hardware
-<img src="./assets/closeup-matrix-portal-s3.png" alt="back-of-LED-matrix" width="300">
 
 ### Plug-and-play (no soldering)
+<img src="./assets/back-LED-matrix.jpg" alt="back of LED matrix with parts" width="300">
 
 - **LED matrix panel → MatrixPortal S3**: connects via the included HUB75
   ribbon cable, straight into the matrix connector on the MatrixPortal S3.
@@ -37,7 +37,7 @@ The project has the following parts:
   consistent if you ever add a second speaker.
 
 ### Requires soldering
-<img src="./assets/closeup-matrix-portal-s3.jpg" alt="closeup of matrix portal s3 and amp" width="300">
+<img src="./assets/closeup-matrix-portal-s3.png" alt="closeup of matrix portal s3 and amp" width="300">
 
 **MAX98357A amp → MatrixPortal S3 (digital audio signal)**
 
