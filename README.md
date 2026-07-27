@@ -34,10 +34,10 @@ led_project/
 
 ---
 
-## Connecting the hardware
+## Assembling the hardware
 <img src="./assets/back-LED-matrix.jpg" alt="back-of-LEDmatrix" width="300">
 
-## Assembling the hardware
+
 
 ### Plug-and-play (no soldering)
 
@@ -65,7 +65,7 @@ on the MatrixPortal S3, matching the I2S pins configured in `code.py`
 | `BCLK` | `A2` | Bit clock |
 | `LRC`  | `A3` | Word select (L/R clock) |
 
-Leave the amp's `SD` (shutdown) and `GAIN` pins unconnected — both are fine
+Leave the amp's `SD` (shutdown) and `GAIN` pins unconnected. Both are fine
 floating for standard mono, default-gain playback.
 
 **Power distribution (amp + matrix, both from the MatrixPortal's screw terminals)**
@@ -73,10 +73,7 @@ floating for standard mono, default-gain playback.
 Both the LED matrix and the MAX98357A draw power from the MatrixPortal
 S3's two screw terminals (`+5V` and `GND`), which in turn get their power
 from the single USB-C input. Since it's a screw terminal block, you can
-land two wires under the same screw rather than soldering a splice — but
-if you'd rather have a cleaner, more permanent joint, solder a short
-Y-splice (one wire in, two wires out) for each of `+5V` and `GND`, then
-land the single combined lead under each terminal screw:
+land two wires under the same screw.
 
 | MatrixPortal S3 terminal | Feeds |
 |---|---|
@@ -84,23 +81,6 @@ land the single combined lead under each terminal screw:
 | `GND` | LED matrix `GND` lead **and** MAX98357A `GND` |
 
 **USB-C power cable with inline rocker switch**
-
-To add an on/off switch to the USB-C power cable itself:
-
-1. Cut the cable and strip back the outer jacket to expose the internal
-   wires. You only need to work with the **red (VBUS/+5V) wire** — leave
-   the black (GND), green/white (D+/D-), and any CC-line wires fully
-   intact and untouched.
-2. Cut the red wire only, and solder each end to one terminal of the
-   rocker switch, so the switch sits inline on the +5V line.
-3. Insulate both solder joints with heat-shrink tubing, and use a larger
-   piece of heat-shrink (or a project box cutout for the switch) to keep
-   the whole splice mechanically protected once it's mounted in the
-   fireplace.
-
-With this wired, flipping the rocker switch cuts +5V power to the
-MatrixPortal S3, which shuts down everything downstream (matrix and amp)
-along with it — one switch controls the whole build.
 
 ```
 USB-C power supply (max 60W)
@@ -125,10 +105,24 @@ power input              (I2S audio out)
   flickering, dimming, or resets under bright frames, it's a sign the
   combined draw is approaching the supply's limit, and lowering
   `BRIGHTNESS` in `code.py` is the easiest fix.
-- Because power comes in only through USB-C now, reprogramming the board is
-  simple — just plug in the same (or another) USB-C cable from your
-  computer; there's no second power path to disconnect first.
+- Because power comes in only through USB-C now, reprogramming the board is simple, just plug in the same (or another) USB-C cable from your computer; there's no second power path to disconnect first.
 
+To add an on/off switch to the USB-C power cable itself:
+
+1. Cut the cable and strip back the outer jacket to expose the internal
+   wires. You only need to work with the **red (VBUS/+5V) wire** — leave
+   the black (GND), green/white (D+/D-), and any CC-line wires fully
+   intact and untouched.
+2. Cut the red wire only, and solder each end to one terminal of the
+   rocker switch, so the switch sits inline on the +5V line.
+3. Insulate both solder joints with heat-shrink tubing, and use a larger
+   piece of heat-shrink (or a project box cutout for the switch) to keep
+   the whole splice mechanically protected once it's mounted in the
+   fireplace.
+
+With this wired, flipping the rocker switch cuts +5V power to the
+MatrixPortal S3, which shuts down everything downstream (matrix and amp)
+along with it — one switch controls the whole build.
 
 ## Create the GIF
 ![demo](./assets/demo-LED-matrix-flame-animation.gif)
