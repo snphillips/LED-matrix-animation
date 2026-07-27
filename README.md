@@ -22,7 +22,7 @@ The project has the following parts:
 ---
 
 ## Assembling the hardware
-<img src="./assets/back-LED-matrix.jpg" alt="back-of-LED-matrix" width="300">
+<img src="./assets/closeup-matrix-portal-s3.png" alt="back-of-LED-matrix" width="300">
 
 ### Plug-and-play (no soldering)
 
