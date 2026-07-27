@@ -2,7 +2,7 @@
 
 <img src="./assets/fireplace.jpg" alt="faux fireplace with LED fire" width="300" align="left">
 
-I built an LED animation of fire with accompanying sound to enhance the faux fireplace in my living room. This repo contains code and instructions on how to build your own animation gif and audio .wav, running on an: 
+I built an LED animation of fire with accompanying sound to enhance the faux fireplace I built in my living room. This repo contains code and instructions on how to build your own animation gif and audio .wav, running on an: 
 - [Adafruit MatrixPortal S3](https://www.adafruit.com/product/5778)
 - driving a [32x32 RGB LED Matrix Panel - 6mm pitch](https://www.adafruit.com/product/1484),
 - Sound provided by a [Mono Enclosed Speaker - 3W 4 Ohm](https://www.adafruit.com/product/3351), 
@@ -13,24 +13,11 @@ I built an LED animation of fire with accompanying sound to enhance the faux fir
 <br/>
 
 The project has the following parts:
-- **Hardware** Connecting and in some cases soldering all the parts together.
-- **Power** How to power the unit.
+- **Hardware:** Connecting and in some cases soldering all the parts together.
+- **Power:** How to power the unit.
 - **Video → GIF** processing scripts (animation)
 - **Audio processing** scripts (looping sound)
-- **`code.py`** the CircuitPython script that runs on the board, playing the GIF and audio together.
-
-## Folder structure
-```
-led_project/
-├── code.py                  ← runs on the MatrixPortal S3 (CircuitPython)
-├── scripts/                 ← the ffmpeg scripts for video, run in order
-├── source-video/            ← put your original input.mp4 here
-├── working-video/           ← intermediate video files land here automatically
-├── output-gif/              ← final animation.gif lands here
-└── sound/
-    ├── process_wav.sh       ← trims/converts a source audio file for playback
-    └── *.wav / *.mp3        ← put your sound file(s) here
-```
+- **`code.py`:** the CircuitPython script that runs on the board, playing the GIF and audio together.
 
 ---
 
