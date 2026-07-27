@@ -1,7 +1,6 @@
 # LED Matrix Animation - Faux Fireplace
 
-![demo](./assets/demo-LED-matrix-flame-animation.gif)
-<img src="./assets/back-LED-matrix.jpg" alt="back-of-LEDmatrix" width="300">
+<img src="./assets/fireplace.jpg" alt="faux fireplace with LED fire" width="300">
 
 I built an LED animation of fire with accompanying sound to enhance the faux fireplace in my living room. This repo contains code and instructions on how to build your own animation gif and audio .wav, running on an: 
 - [Adafruit MatrixPortal S3](https://www.adafruit.com/product/5778)
@@ -34,6 +33,7 @@ led_project/
 ---
 
 ## Connecting the hardware
+<img src="./assets/back-LED-matrix.jpg" alt="back-of-LEDmatrix" width="300">
 (TODO: flush out this section)
 
 ## Power wiring
@@ -72,6 +72,7 @@ power input              (I2S audio out)
 
 
 ## Create the GIF
+![demo](./assets/demo-LED-matrix-flame-animation.gif)
 
 You must have the library ffmpeg installed
 1. Place your source video at `source-video/input.mp4`
