@@ -33,8 +33,8 @@ The project has the following parts:
 - **Speaker → MAX98357A amp**: the speaker's two wires connect to the amp's
   speaker output screw terminals (labeled `+` and `-`). Loosen the
   terminal screws, insert the wires, and tighten — no solder required.
-  Polarity isn't critical for a single small speaker like this, but keep it
-  consistent if you ever add a second speaker.
+  Polarity isn't critical for a single small speaker like this, but keep it consistent if you ever add a second speaker.
+- **Speaker →LED matrix panel**: I affixed the speaker to the back of the panel with double-sided tape.
 
 ### Requires soldering
 <img src="./assets/closeup-matrix-portal-s3.png" alt="closeup of matrix portal s3 and amp" width="300">
