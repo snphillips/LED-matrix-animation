@@ -28,7 +28,7 @@ led_project/
 
 ---
 
-## Workflow: creating the GIF
+## Create the GIF
 
 You must have ffmpeg installed
 1. Place your source video at `source-video/input.mp4`
@@ -37,7 +37,7 @@ You must have ffmpeg installed
 ```bash
 chmod +x scripts/*.sh
 ```
-3. From the `led_project/` root folder, run each script in order, one at a time:
+3. From the `led_project/` root folder, run each script in order, one at a time. Temporary videos will be created after each step and kept in `working-video`.
 ```
 ./scripts/01_crop_to_square.sh
 ```
@@ -50,12 +50,12 @@ chmod +x scripts/*.sh
 ```
 ./scripts/04_make_gif.sh
 ```
-The `turn_gif_upsidedown` script is optional. Run it if you need your gif to be upside down on:
+The `turn_gif_upsidedown` script is optional. Run it if you need your gif to be upside down:
 ```
 ./scripts/05_turn_gif_upsidedown.sh
 ```
 
-4. Your final GIF will be at `output-gif/animation.gif`, ready to copy onto
+4. Your final GIF will be at `output-gif/animation.gif`. It's ready to copy onto
    the MatrixPortal S3 (see below).
 
 ### Notes
@@ -69,7 +69,7 @@ The `turn_gif_upsidedown` script is optional. Run it if you need your gif to be 
 
 ---
 
-## Workflow: creating the ambient audio
+## Create the ambient audio
 
 The sound loops continuously in the background alongside the
 animation, over I2S audio out from the MatrixPortal S3.
@@ -116,9 +116,7 @@ chmod +x process_wav.sh
 
 ## Workflow: preparing the MatrixPortal S3 and loading everything
 
-This project runs on **CircuitPython** (not the Arduino-based Animated GIF
-Player firmware) — `code.py` in this repo is a full custom script that
-handles both the GIF animation and looping audio together.
+This project runs on **CircuitPython**.  `code.py` handles both the GIF animation and looping audio.
 
 Official references:
 - MatrixPortal S3 overview & CircuitPython install: https://learn.adafruit.com/adafruit-matrixportal-s3
