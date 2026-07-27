@@ -7,11 +7,13 @@ I built an LED animation of fire with accompanying sound to enhance the faux fir
 - amplified by an [Adafruit I2S 3W Class D Amplifier Breakout - MAX98357A](https://www.adafruit.com/product/3006).
 - I power my unit with a usb-c charging cable that I spliced an on/off rocker into.
 
-The project has three parts:
-1. **Video → GIF** processing scripts (animation)
-2. **Audio processing** scripts (looping sound)
-3. **`code.py`** the CircuitPython script that runs on the board, playing the GIF and audio together.
-4. **Hardware** Connecting and in some cases soldering all the parts together.
+The project has the following parts:
+- **Hardware** Connecting and in some cases soldering all the parts together.
+- **Power** How to power the unit.
+- **Video → GIF** processing scripts (animation)
+- **Audio processing** scripts (looping sound)
+- **`code.py`** the CircuitPython script that runs on the board, playing the GIF and audio together.
+
 
 ## Folder structure
 ```
@@ -28,9 +30,47 @@ led_project/
 
 ---
 
+## Connecting the hardware
+(TODO: flush out this section)
+
+## Power wiring
+
+Everything runs from a **single USB-C power source** (a 60W-max USB-C
+supply), plugged into the MatrixPortal S3's USB-C port. The board's screw
+terminals — which are internally tied to that same USB-C rail — are then
+used to distribute 5V/GND out to the two other components:
+
+```
+USB-C power supply (max 60W)
+        │
+        ▼
+  MatrixPortal S3 (USB-C port)
+        │
+        ▼
+  Screw terminals (+5V / GND)
+    │                        │
+    ▼                        ▼
+LED matrix panel        MAX98357A audio amp
+power input              (I2S audio out)
+```
+
+- The matrix panel and the MAX98357A amp both draw their power from the
+  MatrixPortal's screw terminals, in parallel.
+- There is no separate wall supply and no DC splitter — one USB-C cable
+  powers the whole build.
+- Since the panel's power now comes through the board rather than a
+  dedicated line, keep an eye on brightness/current draw: if you ever see
+  flickering, dimming, or resets under bright frames, it's a sign the
+  combined draw is approaching the supply's limit, and lowering
+  `BRIGHTNESS` in `code.py` is the easiest fix.
+- Because power comes in only through USB-C now, reprogramming the board is
+  simple — just plug in the same (or another) USB-C cable from your
+  computer; there's no second power path to disconnect first.
+
+
 ## Create the GIF
 
-You must have ffmpeg installed
+You must have the library ffmpeg installed
 1. Place your source video at `source-video/input.mp4`
 2. If you're running the scripts for the first time, make the scripts executable:
 
@@ -50,7 +90,7 @@ chmod +x scripts/*.sh
 ```
 ./scripts/04_make_gif.sh
 ```
-The `turn_gif_upsidedown` script is optional. Run it if you need your gif to be upside down:
+The `turn_gif_upsidedown` script is optional. Run it if you need your gif to be upside down like I did:
 ```
 ./scripts/05_turn_gif_upsidedown.sh
 ```
@@ -114,7 +154,7 @@ chmod +x process_wav.sh
 
 ---
 
-## Workflow: preparing the MatrixPortal S3 and loading everything
+## Preparing the MatrixPortal S3 and loading everything
 
 This project runs on **CircuitPython**.  `code.py` handles both the GIF animation and looping audio.
 
@@ -159,12 +199,12 @@ animation and audio.
 ## `code.py` overview
 
 At a high level, `code.py`:
-1. Initializes the 32x32 RGB matrix via `rgbmatrix`/`framebufferio`.
-2. Opens `/gifs/animation.gif` and loops it frame-by-frame using `gifio`.
-3. Dims each frame in software via `bitmaptools.alphablend()` against a
+- Initializes the 32x32 RGB matrix via `rgbmatrix`/`framebufferio`.
+- Opens `/gifs/animation.gif` and loops it frame-by-frame using `gifio`.
+- Dims each frame in software via `bitmaptools.alphablend()` against a
    black bitmap, controlled by the `BRIGHTNESS` constant (0.0–1.0), since
    the matrix hardware itself has no brightness control.
-4. Sets up I2S audio output and loops whatever `.wav` file it finds in
+- Sets up I2S audio output and loops whatever `.wav` file it finds in
    `/sound/` continuously in the background via `audiomixer`, at a volume
    set by the `FIRE_VOLUME` constant (0.0–1.0).
 
@@ -177,39 +217,6 @@ At a high level, `code.py`:
 
 ---
 
-## Power wiring
-
-Everything runs from a **single USB-C power source** (a 60W-max USB-C
-supply), plugged into the MatrixPortal S3's USB-C port. The board's screw
-terminals — which are internally tied to that same USB-C rail — are then
-used to distribute 5V/GND out to the two other components:
-
-```
-USB-C power supply (max 60W)
-        │
-        ▼
-  MatrixPortal S3 (USB-C port)
-        │
-        ▼
-  Screw terminals (+5V / GND)
-    │                        │
-    ▼                        ▼
-LED matrix panel        MAX98357A audio amp
-power input              (I2S audio out)
-```
-
-- The matrix panel and the MAX98357A amp both draw their power from the
-  MatrixPortal's screw terminals, in parallel.
-- There is no separate wall supply and no DC splitter — one USB-C cable
-  powers the whole build.
-- Since the panel's power now comes through the board rather than a
-  dedicated line, keep an eye on brightness/current draw: if you ever see
-  flickering, dimming, or resets under bright frames, it's a sign the
-  combined draw is approaching the supply's limit, and lowering
-  `BRIGHTNESS` in `code.py` is the easiest fix.
-- Because power comes in only through USB-C now, reprogramming the board is
-  simple — just plug in the same (or another) USB-C cable from your
-  computer; there's no second power path to disconnect first.
 
 ---
 
